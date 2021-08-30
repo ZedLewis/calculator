@@ -1,0 +1,9 @@
+#html {
+background-color: darkcyan;
+/* position: relative;
+min-height: 100%; */
+}
+
+.calculator {
+    width: 500px;
+}
