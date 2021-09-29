@@ -34,5 +34,21 @@ button:hover {
 .output {
     grid-column: 1 / -1;
     background-color: rgba(0, 0, 0, .75);
-    text-decoration-color: darkgrey;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    flex-direction: column;
+    padding: 10px;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.output .previousInput {
+color: ivory;
+font-size: 25px;
+}
+
+.output .currentInput {
+color: ivory;
+font-size: 25px;
 }
