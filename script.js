@@ -1,11 +1,25 @@
-const numberButtons = document.querySelectorAll('[data-number]')
+// const numberButtons = document.querySelectorAll('[data-number]')
+
 const operatorButtons = document.querySelectorAll('[data-operation]')
 const equalsButton = document.querySelector('[data-equals]')
 const deleteButton = document.querySelector('[data-delete]')
 const clearButton = document.querySelector('[data-clear]')
-const previousInputElement = document.querySelector('[data-previous-input]')
-const currentInputElement = document.querySelector('[data-current-input]')
+const previousInputElement = document.querySelector('[data-previous]')
+const currentInputElement = document.querySelector('[data-current]')
+console.log(currentInputElement)
 
+window.onload = function main() {
+  const numberButtons = document.querySelectorAll('[data-number]')
+
+  numberButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      console.log(button, "clicked")
+      calculator.appendNumber(button.innerText)
+      calculator.updateDisplay()
+    })
+  })
+  
+}
 
 
 
@@ -41,19 +55,13 @@ class Calculator {
   }
 
   updateDisplay() {
+    console.log (this)
     this.currentInputElement.innerText = this.currentOperand
 
   }
 }
 
 const calculator = new Calculator (previousInputElement, currentInputElement)
-
-numberButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    calculator.appendNumber(button.innerText)
-    calculator.updateDisplay()
-  })
-})
 
 function add (a, b) {
 return a + b;
