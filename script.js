@@ -17,22 +17,24 @@ class Calculator {
   }
 
   delete () {
-
+    this.currentOperand = this.currentOperand.toString().slice(0, -1)
   }
 
+  
   clear () {
-    this.previousInputElement = ''
-    this.currentInputElement = ''
+    this.currentOperand = ''
+    this.previousOperand = ''
     this.operation = undefined
-
   }
-// Function is not being recognised when called upon, trying to debug
+
+// Performs operations and moves numbers to and from input elements accordingly
   compute() {
     let result
     const prev = parseFloat(this.previousOperand)
     const current = parseFloat(this.currentOperand)
+    console.log(this.operator)
     if(isNaN(prev) || isNaN(current)) return
-    switch (this.operation) {
+    switch (this.operator) {
       case '+':
         result = prev + current
         break
@@ -74,11 +76,16 @@ class Calculator {
 
   updateDisplay() {
     this.currentInputElement.innerText = this.currentOperand
+    // Ideally this concatenates number and operand in previous input, not working as it stands. 
+    if (this.operation != null) {
+    this.previousInputElement.innerText = 
+     `${this.previousOperand} ${this.operation}`
+    }
     this.previousInputElement.innerText = this.previousOperand
-
   }
 }
 
+// functions populate calculator display
 numberButtons.forEach(button => {
   button.addEventListener('click', () => {
     console.log(button, "clicked")
@@ -95,30 +102,24 @@ operatorButtons.forEach(button => {
   })
 })
 
-
+// calculates and updates display
 equalsButton.addEventListener('click', () => {
   calculator.compute()
   calculator.updateDisplay()
 })
 
+clearButton.addEventListener('click', () => {
+  console.log("clicked")
+  calculator.clear()
+  calculator.updateDisplay()
+})
+
+deleteButton.addEventListener('click', () => {
+  console.log("clicked")
+  calculator.delete()
+  calculator.updateDisplay()
+})
+
 const calculator = new Calculator (previousInputElement, currentInputElement)
-
-function add (a, b) {
-return a + b;
-}
-
-function subtract (a, b) {
-    return a - b;
-}
-
-function multiply (a, b) {
-    return a * b;
-}
-
-function divide (a, b) {
-    return a / b;
-}
-
-
 
 
